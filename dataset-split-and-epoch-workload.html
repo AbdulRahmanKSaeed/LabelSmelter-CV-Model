@@ -1,0 +1,61 @@
+<div id="dataset-epoch-visual" style="display:grid;gap:calc(var(--font-size-base) * 1.25);color:var(--foreground);font-variant-numeric:tabular-nums">
+  <div>
+    <h2>Dataset split and one epoch</h2>
+    <p class="text-muted">Your project has 100,000 images. An epoch uses every training image once, then validates on every validation image once.</p>
+  </div>
+
+  <svg viewBox="0 0 760 230" role="img" aria-labelledby="dataset-title dataset-desc" style="width:100%;height:auto;overflow:visible">
+    <title id="dataset-title">Dataset allocation</title>
+    <desc id="dataset-desc">A 100,000 image dataset is split into 85,000 training images, 15,000 validation images, and no test images.</desc>
+    <text x="0" y="24" fill="var(--foreground)" font-size="16" font-weight="500">100,000 images in the prepared dataset</text>
+    <rect x="0" y="50" width="646" height="52" rx="8" fill="var(--viz-series-1, var(--blue))" opacity=".9"></rect>
+    <rect x="646" y="50" width="114" height="52" rx="8" fill="var(--orange)" opacity=".9"></rect>
+    <text x="22" y="81" fill="var(--primary-foreground)" font-size="17" font-weight="500">Training 85,000 · 85%</text>
+    <text x="665" y="81" fill="var(--foreground)" font-size="15" font-weight="500">Validation 15,000 · 15%</text>
+    <line x1="0" y1="134" x2="760" y2="134" stroke="var(--border)" stroke-width="1"></line>
+    <text x="0" y="164" fill="var(--foreground)" font-size="16" font-weight="500">Test split</text>
+    <text x="104" y="164" fill="var(--muted-foreground)" font-size="16">0 images currently assigned</text>
+    <text x="0" y="205" fill="var(--muted-foreground)" font-size="14">The 15,000 validation images measure progress after each epoch. They are not used to update the model.</text>
+  </svg>
+
+  <hr>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--font-size-base) * 1)">
+    <div class="card" style="padding:calc(var(--font-size-base) * 1.25)">
+      <p class="text-muted">Training portion of one epoch</p>
+      <div class="viz-stat-value">85,000 images</div>
+      <p class="text-muted">Batch size: 8</p>
+      <div class="progress" role="progressbar" aria-label="Training images processed during an epoch" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:100%"></div></div>
+      <p style="margin-top:calc(var(--font-size-base) * .75)"><strong>10,625 training batches</strong></p>
+      <p class="text-muted">Each batch updates the model.</p>
+    </div>
+    <div class="card" style="padding:calc(var(--font-size-base) * 1.25)">
+      <p class="text-muted">Validation portion after one epoch</p>
+      <div class="viz-stat-value">15,000 images</div>
+      <p class="text-muted">Validation runs at about 16 images per batch</p>
+      <div class="progress" role="progressbar" aria-label="Validation images processed after an epoch" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width:100%;background:var(--orange)"></div></div>
+      <p style="margin-top:calc(var(--font-size-base) * .75)"><strong>938 validation batches</strong></p>
+      <p class="text-muted">This calculates Precision, Recall, and mAP. No model updates occur.</p>
+    </div>
+  </div>
+
+  <svg viewBox="0 0 760 170" role="img" aria-labelledby="cycle-title cycle-desc" style="width:100%;height:auto;overflow:visible">
+    <title id="cycle-title">Epoch sequence</title>
+    <desc id="cycle-desc">One epoch processes all training images in batches, then all validation images in batches, saves a checkpoint, and moves to the next epoch.</desc>
+    <text x="0" y="22" fill="var(--foreground)" font-size="16" font-weight="500">What happens in every epoch</text>
+    <path d="M112 89 H280 M365 89 H530 M615 89 H720" stroke="var(--border)" stroke-width="2" fill="none"></path>
+    <path d="M720 89 l-10 -6 M720 89 l-10 6" stroke="var(--border)" stroke-width="2" fill="none"></path>
+    <circle cx="65" cy="89" r="42" fill="var(--viz-series-1, var(--blue))" opacity=".9"></circle>
+    <circle cx="323" cy="89" r="42" fill="var(--orange)" opacity=".9"></circle>
+    <circle cx="573" cy="89" r="42" fill="var(--green)" opacity=".9"></circle>
+    <text x="65" y="84" text-anchor="middle" fill="var(--primary-foreground)" font-size="14" font-weight="500">Train</text>
+    <text x="65" y="104" text-anchor="middle" fill="var(--primary-foreground)" font-size="12">10,625 batches</text>
+    <text x="323" y="84" text-anchor="middle" fill="var(--foreground)" font-size="14" font-weight="500">Validate</text>
+    <text x="323" y="104" text-anchor="middle" fill="var(--foreground)" font-size="12">938 batches</text>
+    <text x="573" y="84" text-anchor="middle" fill="var(--foreground)" font-size="14" font-weight="500">Save</text>
+    <text x="573" y="104" text-anchor="middle" fill="var(--foreground)" font-size="12">metrics + checkpoint</text>
+    <text x="65" y="154" text-anchor="middle" fill="var(--muted-foreground)" font-size="13">weights update</text>
+    <text x="323" y="154" text-anchor="middle" fill="var(--muted-foreground)" font-size="13">weights do not update</text>
+    <text x="573" y="154" text-anchor="middle" fill="var(--muted-foreground)" font-size="13">then Epoch 3</text>
+  </svg>
+</div>

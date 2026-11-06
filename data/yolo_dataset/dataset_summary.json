@@ -1,0 +1,13 @@
+{
+  "total_images": 100000,
+  "train_images": 85000,
+  "val_images": 15000,
+  "total_boxes": 1925557,
+  "train_boxes": 1638599,
+  "val_boxes": 286958,
+  "nc": 601,
+  "classes_with_zero_instances": [
+    "Container",
+    "Kitchenware"
+  ]
+}

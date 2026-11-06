@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "source_split": "train",
+    "val_ratio": 0.15,
+    "seed": 42,
+    "timestamp": "2026-10-21"
+  },
+  "dataset_summary": {
+    "total_boxable_classes": 601,
+    "covered_classes": 599,
+    "coverage_percentage": 99.67,
+    "rare_classes_covered_under_50_boxes": 35,
+    "total_selected_images": 100000,
+    "train_images": 85000,
+    "val_images": 15000,
+    "total_selected_boxes": 1925557
+  },
+  "storage_estimate": {
+    "empirical_mean_image_kb": 289.4,
+    "images_only_gb": 27.6,
+    "total_estimated_storage_gb": 34.76,
+    "current_free_disk_space_gb": 65.8,
+    "projected_remaining_space_gb": 31.04
+  }
+}

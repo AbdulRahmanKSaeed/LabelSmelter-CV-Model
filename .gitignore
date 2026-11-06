@@ -1,0 +1,28 @@
+# Virtual environments
+.venv_cuda/
+venv/
+.venv/
+env/
+
+# Raw dataset downloads and heavy images/labels (~30 GB+)
+data/yolo_dataset/images/
+data/yolo_dataset/labels/
+data/annotations/
+*.cache
+
+# Model checkpoints and weights (binary models over 5 MB / 100 MB limit)
+*.pt
+*.onnx
+*.engine
+weights/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS & Editor artifacts
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

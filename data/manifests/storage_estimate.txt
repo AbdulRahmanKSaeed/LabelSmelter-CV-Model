@@ -1,0 +1,33 @@
+======================================================================
+OPEN IMAGES SUBSET - STORAGE ESTIMATE & CAPACITY ANALYSIS
+======================================================================
+
+1. Subset Specification:
+   Selected Images:        100,000
+   Training Split:         85,000 images (85%)
+   Validation Split:       15,000 images (15%)
+   Total Bounding Boxes:   1,925,557
+   Boxable Classes Covered:599 / 601
+
+2. Empirical Size Measurements:
+   Measured Image Sample:  31 representative Open Images JPEG downloads
+   Minimum Image Size:     63.4 KB
+   Maximum Image Size:     885.8 KB
+   Empirical Mean Size:    289.4 KB (0.283 MB)
+   Estimated YOLO Label:   0.5 KB / text file
+
+3. Storage Breakdown:
+   Downloaded JPEG Images: 27.60 GB (28,261.7 MB)
+   YOLO .txt Label Files:  0.05 GB (48.8 MB)
+   Annotation CSVs & YAML: 0.12 GB (120.0 MB)
+   Download Temp Buffer:   2.00 GB (2,048.0 MB)
+   Reserved Safety Margin: 5.00 GB (5,120.0 MB)
+   ------------------------------------------------------------
+   TOTAL ESTIMATED NEEDED: 34.76 GB (35,598.5 MB)
+
+4. Drive Capacity Check (Drive C:):
+   Current Free Disk Space:65.80 GB
+   Storage Needed:         34.76 GB (including 7.12 GB temp & safety reserve)
+   Net Dataset Footprint:  27.77 GB (images, labels, and YAML metadata)
+   Projected Remaining:    31.04 GB (guaranteed free headroom)
+   Safe to Proceed:        YES

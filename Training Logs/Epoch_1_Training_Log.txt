@@ -1,0 +1,747 @@
+PS C:\Users\HP\Desktop\CV Project> .venv_cuda\Scripts\python.exe scripts\train_detector.py --epochs 1 --batch 8 --imgsz 640 --name epoch_by_epoch
+ *  History restored 
+
+PS C:\Users\HP\Desktop\CV Project> .venv_cuda\Scripts\python.exe scripts\train_detector.py --epochs 1 --batch 8 --imgsz 640 --name epoch_by_epoch
+======================================================================
+   OPEN IMAGES V6 (600-CLASS) OBJECT DETECTION TRAINING PIPELINE   
+======================================================================
+Timestamp: 2026-11-04 21:05:53
+Working Directory: C:\Users\HP\Desktop\CV Project
+[Storage Check] Free space: 24.02 GB (minimum required: 5.0 GB)
+[Dataset Config] Found: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\dataset.yaml
+[PyTorch Version] 2.6.0+cu124
+[Device] CUDA GPU detected: NVIDIA GeForce GTX 1050 (3072 MB VRAM)
+[Model] Initializing architecture: yolo11n.pt
+
+Training Configuration:
+  - Dataset Config: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\dataset.yaml
+  - Model:          yolo11n.pt
+  - Device:         0
+  - Epochs:         1
+  - Batch Size:     8
+  - Image Size:     640
+  - Dataloader Workers: 4
+  - Dataset Fraction:   100.00% (85,000 train images)
+  - Output Dir:     runs\detect\epoch_by_epoch
+  - Save Period:    Every 1 epoch(s)
+======================================================================
+
+Starting training session...
+New https://pypi.org/project/ultralytics/8.4.202 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.183  Python-3.12.12 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce GTX 1050, 3072MiB)
+engine\trainer: agnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=8, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:\Users\HP\Desktop\CV Project\data\yolo_dataset\dataset.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo11n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=epoch_by_epoch, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=10, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=runs/detect, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch, save_frames=False, save_json=False, save_period=1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, 
+tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=4, workspace=None
+Overriding model.yaml nc=80 with nc=601
+
+                   from  n    params  module                                       arguments
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 13                  -1  1    111296  ultralytics.nn.modules.block.C3k2            [384, 128, 1, False]
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 16                  -1  1     32096  ultralytics.nn.modules.block.C3k2            [256, 64, 1, False]
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 19                  -1  1     86720  ultralytics.nn.modules.block.C3k2            [192, 128, 1, False]
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 22                  -1  1    378880  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True]
+ 23        [16, 19, 22]  1    648235  ultralytics.nn.modules.head.Detect           [601, 16, None, [64, 128, 256]]
+YOLO11n summary: 181 layers, 2,807,403 parameters, 2,807,387 gradients, 7.7 GFLOPs
+
+Remapped 66/601 cls head rows from pretrained weights by class name
+Transferred 499/499 items from pretrained weights
+Freezing layer 'model.23.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks...
+AMP: checks passed
+WARNING train: Slow image access detected (ping: 1.3±1.7 ms, read: 39.7±6.2 MB/s, size: 276.2 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+train: Scanning C:\Users\HP\Desktop\CV Project\data\yolo_dataset\labels\train... 85000 images, 0 backgrounds, 0 c…: 100% ━━━━━━━━━━━━ 85000/85000 340.1it/s 4:10 
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\0071689b11f8a240.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\00d343d4a829121c.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\00e4de5392c887a1.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\01b15d5fcabae5b0.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\01c8bfbc5dc3361e.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\0213fdda9722673f.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\02569a8d683c89ef.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\02b8b8d9449a90a7.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\03477ac599d2da16.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\05f44cd5273a18ed.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\0c0345f70a278559.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\0c07f16af20bdc98.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\0ee9e3e88f6ce2fc.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\106c2cb4a677375a.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\116fdbd1748ba896.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\11c20f691585eafe.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\145de9b828a964f9.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\1f558eddf08770a7.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\23fa2b332cfa8a9f.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\2e167738a79df3b0.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\3fd38502c518465c.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\4a9f03277b0f9f8a.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\4ed503df8bd1e058.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\501dae2104545f8d.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\5a1a893491be34c8.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\5ae09cf5c68e024e.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\5cca0787bcec5005.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\65cf215d71ac8fda.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\74009b7efd9e1376.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\76267687e2fd05f1.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\819d1c7d4f31157a.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\8f924d2c02af33b1.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\9a7dc1b8fe047408.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\9eebda228fe3d857.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\aa05cc01223ee504.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\b347e2a86b1d5f47.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\ce8b8f0f1611b2fa.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\f574deb2309a99b3.jpg: 1 duplicate labels removed
+train: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\train\fd557fbb42e8624a.jpg: 1 duplicate labels removed
+train: New cache created: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\labels\train.cache
+WARNING val: Slow image access detected (ping: 0.6±0.4 ms, read: 37.5±26.1 MB/s, size: 295.1 KB). Use local storage instead of remote/mounted storage for better 
+performance. See https://docs.ultralytics.com/guides/model-training-tips
+val: Scanning C:\Users\HP\Desktop\CV Project\data\yolo_dataset\labels\val.cache... 15000 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 15000/15000  0.0s   
+val: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\val\2497e41cea655ddc.jpg: 1 duplicate labels removed
+val: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\val\33a7ecbaa393391e.jpg: 1 duplicate labels removed
+val: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\val\6f871cf85650a756.jpg: 1 duplicate labels removed
+val: C:\Users\HP\Desktop\CV Project\data\yolo_dataset\images\val\9cb7b2b3627e31c3.jpg: 1 duplicate labels removed
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+optimizer: AdamW(lr=1.7e-05, momentum=0.9) with parameter groups 81 weight(decay=0.0), 88 weight(decay=0.0005), 87 bias(decay=0.0)
+WARNING Dataset images contain up to 510 objects (train=510, val=390), but max_det=300. This mismatch can cap recall and produce invalid validation metrics. Raising it may increase validation cost but cannot increase model or export capacity, which may cap recall. Setting max_det=510 to match the observed maximum.       
+Plotting labels to C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\labels.jpg... 
+Using 85000 train, 15000 val images for fraction=1.0 at imgsz=640
+Using 4 dataloader workers
+Logging results to C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+        1/1      3.07G      1.577      3.308      1.586        177        640: 100% ━━━━━━━━━━━━ 10625/10625 2.1it/s 1:23:52
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 938/938 1.3it/s 12:10
+                   all      15000     286954      0.538     0.0642     0.0525     0.0337
+
+1 epochs completed in 1.611 hours.
+Optimizer stripped from C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\weights\last.pt, 5.8MB
+Optimizer stripped from C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\weights\best.pt, 5.8MB
+
+Validating C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\weights\best.pt...
+Ultralytics 8.4.183  Python-3.12.12 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce GTX 1050, 3072MiB)
+YOLO11n summary (fused): 101 layers, 2,742,851 parameters, 0 gradients, 7.2 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 938/938 2.4it/s 6:25
+                   all      15000     286954      0.538     0.0642     0.0525     0.0337
+             Accordion         18         19          0          0          0          0
+         Adhesive tape         15         30          1          0   0.000603   0.000552
+              Aircraft         17         18          1          0    0.00016   0.000112
+              Airplane         18         29      0.293      0.241      0.128     0.0555
+           Alarm clock         23         35          0          0    0.00912    0.00772
+                Alpaca         19         40          1          0          0          0
+             Ambulance         19         27          1          0          0          0
+                Animal         21         25          1          0   6.76e-05   6.76e-05
+                   Ant         25         46          1          0    0.00915    0.00372
+              Antelope         18         39          1          0          0          0
+                 Apple         22         63      0.151      0.397      0.127      0.104
+             Armadillo         10         10          1          0   0.000536   0.000414
+             Artichoke         24         40          1          0   3.09e-05   3.09e-05
+             Auto part         26         40          1          0          0          0
+                   Axe         22         26          1          0          0          0
+              Backpack         16         30          0          0     0.0494     0.0259
+                 Bagel         21         47          0          0     0.0007     0.0006
+           Baked goods        174        304      0.185      0.197      0.105      0.071
+          Balance beam         35         42          1          0          0          0
+                  Ball         68        195          0          0   0.000249   0.000167
+               Balloon         35         98          1          0          0          0
+                Banana         25         43      0.306      0.186      0.149     0.0802
+              Band-aid          4          5          1          0          0          0
+                 Banjo         19         19          1          0          0          0
+                 Barge         22         53          1          0     0.0193     0.0118
+                Barrel         21         49          1          0    2.4e-05   2.16e-05
+          Baseball bat         23         25          1          0      0.138     0.0782
+        Baseball glove         26         37          1          0      0.354      0.188
+          Bat (Animal)         17         35          0          0    0.00142   0.000895
+    Bathroom accessory         42        166      0.141     0.0422     0.0281     0.0132
+      Bathroom cabinet         22         26          0          0    0.00046   0.000298
+               Bathtub         22         23          1          0    0.00255    0.00191
+                Beaker         15         28          1          0   0.000188   3.76e-05
+                  Bear         16         20     0.0244       0.05     0.0148     0.0128
+                   Bed         51         56       0.52      0.581      0.511       0.35
+                   Bee         22        570          0          0   4.58e-05   1.65e-05
+               Beehive         13         14          1          0   0.000443   0.000365
+                  Beer         60        103     0.0373    0.00971    0.00678    0.00387
+                Beetle         22         49          0          0   0.000185   0.000137
+           Bell pepper         24         53          0          0    0.00689    0.00473
+                  Belt         27         38          0          0   6.59e-06   5.94e-06
+                 Bench         26         44      0.282      0.179      0.157      0.075
+               Bicycle        332        706      0.387      0.637      0.543      0.301
+        Bicycle helmet        103        192          0          0    0.00199   0.000822
+         Bicycle wheel        322       1117      0.174      0.662      0.404       0.21
+                 Bidet         26         30          0          0      1e-05   8.01e-06
+             Billboard         26         69          0          0   8.43e-05   7.52e-05
+        Billiard table         24         35          1          0          0          0
+            Binoculars         22         29          0          0   0.000183   0.000116
+                  Bird         24         58          0          0     0.0341     0.0157
+               Blender         24         36          0          0   0.000841   0.000535
+              Blue jay         22         27          0          0     0.0254     0.0192
+                  Boat         58         88      0.256      0.205      0.207      0.121
+                  Book         76        169          0          0    0.00729    0.00415
+              Bookcase         79        124      0.272      0.298      0.211     0.0976
+                  Boot         17         37          1          0          0          0
+                Bottle        134        549      0.268      0.264      0.134     0.0836
+         Bottle opener          2          2          1          0          0          0
+         Bow and arrow         27         43          1          0          0          0
+                  Bowl         43        110      0.103      0.136     0.0914     0.0575
+     Bowling equipment         21        115          1          0          0          0
+                   Box         22         46          0          0          0          0
+                   Boy        978       1644      0.192     0.0931      0.084     0.0522
+             Brassiere         17         26          0          0          0          0
+                 Bread         26         56          1          0          0          0
+             Briefcase          9         13          1          0     0.0133    0.00986
+              Broccoli         32        100      0.494       0.37       0.43      0.234
+      Bronze sculpture         20         21          0          0   0.000255    0.00019
+            Brown bear         22         29          0          0     0.0139     0.0117
+              Building        366        525      0.103       0.55      0.115     0.0706
+                  Bull         19         25      0.136       0.24     0.0801     0.0551
+               Burrito         33         54          1          0          0          0
+                   Bus         30         48      0.401      0.458      0.431      0.352
+                  Bust         21         22          1          0          0          0
+             Butterfly         22         32          1          0    0.00429    0.00248
+               Cabbage         14         30          1          0   0.000294   0.000294
+             Cabinetry        124        438      0.155      0.338      0.122     0.0655
+                  Cake         86        138      0.204      0.594      0.297      0.175
+            Cake stand         22         27          0          0   0.000637   0.000229
+            Calculator         31         38      0.102     0.0263     0.0371      0.031
+                 Camel         21         35          0          0     0.0192     0.0141
+                Camera         40         45          1          0   6.41e-05    3.2e-05
+            Can opener          2          2          1          0          0          0
+                Canary         14         21          1          0          0          0
+                Candle         27         82          0          0          0          0
+                 Candy         23         77          0          0   4.98e-06    1.5e-06
+                Cannon         24         33          0          0          0          0
+                 Canoe         23         63          1          0     0.0172    0.00873
+            Cantaloupe         12         23          0          0   0.000476   0.000476
+                   Car        410        974      0.335      0.684      0.471      0.308
+             Carnivore         31         45          0          0   2.29e-05   1.81e-05
+                Carrot         23         50      0.615       0.02      0.102     0.0584
+                  Cart         19         21          0          0          0          0
+         Cassette deck         14         18          0          0   0.000363   0.000154
+                Castle         17         20          1          0          0          0
+                   Cat         55         67      0.328      0.657      0.488      0.394
+         Cat furniture         18         21          1          0   0.000627    0.00057
+           Caterpillar         25         65          1          0   0.000182   0.000145
+                Cattle         32        114          1          0          0          0
+           Ceiling fan         18         19          1          0          0          0
+                 Cello         19         30          1          0          0          0
+             Centipede         28         52          1          0          0          0
+              Chainsaw         19         20          1          0          0          0
+                 Chair        410       1600      0.239      0.475      0.277      0.152
+                Cheese         23         82          1          0    0.00556    0.00556
+               Cheetah         26         30          0          0   3.16e-05   2.94e-05
+      Chest of drawers         69        101          0          0     0.0248      0.017
+               Chicken         24         35          1          0    0.00078   0.000427
+                 Chime          4         10          1          0          0          0
+                Chisel          1          1          1          0          0          0
+            Chopsticks         18         24          0          0   0.000143   7.17e-05
+        Christmas tree         27         41          1          0          0          0
+                 Clock         27         35      0.191     0.0571      0.116     0.0655
+                Closet         23         42          1          0          0          0
+              Clothing       4434      15560      0.303      0.467      0.261      0.124
+                  Coat         93        170          1          0   0.000918   0.000383
+              Cocktail         32         50          0          0     0.0277     0.0203
+       Cocktail shaker          4          4          1          0     0.0087    0.00761
+               Coconut         19         43          0          0   7.74e-05   6.19e-05
+                Coffee         31         34          1          0          0          0
+            Coffee cup         92        153      0.142      0.144     0.0609     0.0454
+          Coffee table         49         83          1          0   0.000314   7.29e-05
+           Coffeemaker         26         31          0          0   0.000344   0.000228
+                  Coin         26         48          0          0    0.00177    0.00115
+            Common fig         13         34          1          0    0.00176   0.000702
+      Common sunflower         20         42          0          0   1.91e-05   1.91e-06
+     Computer keyboard         55         77      0.815     0.0578       0.26      0.171
+      Computer monitor         48         61          0          0     0.0108    0.00665
+        Computer mouse         28         29          0          0          0          0
+     Convenience store         19         20          1          0          0          0
+                Cookie         23         62          0          0          0          0
+         Cooking spray          1          4          1          0          0          0
+          Corded phone         23         25          1          0   0.000195   5.73e-05
+             Cosmetics         24         38          1          0    0.00201    0.00144
+                 Couch         85         97      0.303      0.351      0.307      0.197
+            Countertop         94        127      0.202    0.00317      0.161     0.0931
+            Cowboy hat         65        122          1          0     0.0834     0.0489
+                  Crab         21         29          0          0    0.00298    0.00154
+                 Cream          7         13          1          0          0          0
+          Cricket ball         13         15          1          0          0          0
+             Crocodile         31         47          1          0   5.09e-05   4.07e-05
+             Croissant         24         46          1          0     0.0155     0.0108
+                 Crown         18         34          0          0          0          0
+                Crutch         11         28          0          0          0          0
+              Cucumber         24         47          1          0   0.000244   0.000181
+              Cupboard         55        104          1          0   0.000165   8.46e-05
+               Curtain         45         88          0          0          0          0
+         Cutting board         32         35          1          0          0          0
+                Dagger         34         53          1          0     0.0353     0.0255
+         Dairy Product         51        135    0.00768    0.00741   0.000928   0.000476
+                  Deer         14         22          1          0          0          0
+                  Desk        201        234       0.23      0.218      0.156       0.08
+               Dessert        121        336     0.0827     0.0646     0.0469     0.0307
+                Diaper         13         15          0          0          0          0
+                  Dice         15         41          0          0   0.000837   0.000573
+         Digital clock         24         26          0          0   0.000605   0.000307
+              Dinosaur         25         30          0          0   5.29e-05   3.17e-05
+            Dishwasher          8          8          0          0   0.000261   0.000209
+                   Dog        110        132      0.443      0.477       0.41      0.293
+               Dog bed         27         29          0          0   4.25e-05    1.7e-05
+                  Doll         57         73          0          0          0          0
+               Dolphin         27         47          0          0   0.000216   0.000163
+                  Door        109        150          1          0   0.000577   0.000125
+           Door handle         20         23          1          0          0          0
+              Doughnut         19         45          1          0   0.000373   0.000299
+             Dragonfly         20         24          1          0    0.00124   0.000703
+                Drawer         78        184          1          0          0          0
+                 Dress        601        879      0.198     0.0887     0.0814     0.0417
+          Drill (Tool)         21         28          1          0          0          0
+                 Drink        302        672      0.113     0.0967     0.0444     0.0212
+        Drinking straw          8         13          1          0    0.00166    0.00118
+                  Drum         39        104          1          0          0          0
+                  Duck         32        129       0.31     0.0176     0.0768     0.0523
+              Dumbbell         12         45          0          0   0.000763   0.000638
+                 Eagle         27         29          1          0     0.0118     0.0096
+              Earrings         20         26          1          0          0          0
+            Egg (Food)         27         66          0          0    0.00711    0.00649
+              Elephant         29         46      0.309      0.565      0.472      0.326
+              Envelope         28         44          1          0          0          0
+                Eraser          3          3          0          0          0          0
+           Face powder          5          8          1          0          0          0
+  Facial tissue holder          4          4          1          0          0          0
+                Falcon         24         26          1          0    0.00944    0.00848
+     Fashion accessory        441       1995          0          0   0.000252    0.00013
+             Fast food        164        407     0.0377     0.0442     0.0119    0.00683
+                   Fax          4          4          1          0          0          0
+                Fedora         82        108          0          0    0.00663    0.00234
+        Filing cabinet         20         26          1          0   4.92e-05   4.43e-05
+          Fire hydrant         21         21      0.788      0.857      0.874      0.745
+             Fireplace         28         32          1          0    0.00129   0.000925
+                  Fish         36        105          1          0    8.6e-05   5.14e-05
+                  Flag         53        161          0          0    1.4e-06   1.26e-06
+            Flashlight          3         14          1          0          0          0
+                Flower        271       1264          0          0   9.33e-05   4.68e-05
+             Flowerpot        109        304      0.191     0.0263     0.0304     0.0164
+                 Flute         23         31          1          0          0          0
+           Flying disc         20         22          1          0          0          0
+                  Food        161        499     0.0606     0.0661     0.0134    0.00585
+        Food processor         21         35          0          0   0.000831   0.000448
+              Football         34         34          1          0          0          0
+       Football helmet         22         80          1          0          0          0
+              Footwear       2022       9144      0.255      0.492      0.273      0.106
+                  Fork         23         38      0.277      0.342      0.184      0.128
+              Fountain         21         28          1          0   7.77e-06   6.22e-06
+                   Fox         19         25          1          0    0.00096    0.00077
+          French fries         21        117          0          0   0.000338   0.000179
+           French horn         19         59          1          0          0          0
+                  Frog         17         17          0          0    0.00131   0.000846
+                 Fruit         53        196          0          0      0.011    0.00809
+            Frying pan         25         35          1          0   0.000991    0.00048
+             Furniture        181        451     0.0101    0.00665    0.00423    0.00226
+      Garden Asparagus         13         19          1          0   0.000491   0.000147
+             Gas stove         26         28          0          0          0          0
+               Giraffe         28         55      0.386      0.436       0.34      0.239
+                  Girl       2254       4346      0.269      0.427      0.247      0.178
+               Glasses        961       1295      0.155      0.134     0.0771     0.0288
+                 Glove         15         25          1          0          0          0
+                  Goat         22         39          1          0          0          0
+               Goggles        249        359          1          0   0.000255    5.7e-05
+              Goldfish         28        288          0          0   0.000106   6.85e-05
+             Golf ball         22         27          1          0     0.0105     0.0097
+             Golf cart         23         40          1          0          0          0
+               Gondola         26         77          0          0   0.000196   4.76e-05
+                 Goose         23         92          0          0    0.00194    0.00123
+                 Grape         15        106          1          0          0          0
+            Grapefruit         23         83          0          0    0.00113   0.000901
+               Grinder          1          1          1          0          0          0
+             Guacamole         22         36          0          0     0.0289     0.0132
+                Guitar        126        152          1          0          0          0
+            Hair dryer          3          3          1          0          0          0
+            Hair spray          1          1          1          0          0          0
+             Hamburger         22         38          1          0          0          0
+                Hammer         26         27          0          0          0          0
+               Hamster         24         24          0          0    0.00424    0.00218
+            Hand dryer         12         15          1          0          0          0
+               Handbag         29         35      0.346      0.152      0.195      0.138
+               Handgun         21         23          1          0          0          0
+           Harbor seal         19         25          1          0          0          0
+             Harmonica          3          6          0          0          0          0
+                  Harp         27         31          1          0   0.000117   8.39e-05
+           Harpsichord         19         20          1          0          0          0
+                   Hat        194        271     0.0908     0.0406      0.036     0.0214
+            Headphones         23         28          0          0   4.88e-05   2.44e-05
+                Heater          4          6          1          0          0          0
+              Hedgehog         22         24          1          0      0.161      0.139
+            Helicopter         21         22          1          0          0          0
+                Helmet        107        228          1          0      0.011    0.00477
+            High heels         25         56          1          0          0          0
+      Hiking equipment         24         80          1          0          0          0
+          Hippopotamus         23         32          0          0    0.00089   0.000549
+        Home appliance         21         43          0          0   7.29e-05   4.82e-05
+             Honeycomb         13         14          0          0          0          0
+        Horizontal bar         13         22          1          0          0          0
+                 Horse         25         58      0.556      0.483      0.429      0.321
+               Hot dog         21         27      0.412      0.704      0.492      0.341
+                 House        299        409      0.163      0.533      0.225      0.168
+            Houseplant        122        306      0.389      0.208      0.182     0.0965
+             Human arm       4441      21937      0.254      0.307      0.179     0.0722
+           Human beard        323        368          0          0   0.000128   3.62e-05
+            Human body       4616      16397      0.364      0.511      0.326       0.17
+             Human ear       1196       2538      0.241      0.165     0.0842     0.0446
+             Human eye       3227      10496      0.307      0.433      0.252     0.0908
+            Human face       6815      19794      0.435      0.689      0.589      0.349
+            Human foot         50        145          1          0          0          0
+            Human hair       6113      22977       0.35      0.596       0.38      0.184
+            Human hand       2494       8675       0.27      0.197      0.137      0.059
+            Human head       5497      22721      0.391      0.678      0.464      0.266
+             Human leg       1761       7149      0.242      0.244      0.143     0.0588
+           Human mouth       3359       5935      0.335      0.261      0.173     0.0676
+            Human nose       3790       7959      0.377      0.229      0.171     0.0881
+            Humidifier          2          2          1          0          0          0
+             Ice cream         21         59          1          0          0          0
+          Indoor rower          4          4          1          0          0          0
+            Infant bed         16         17          0          0   4.73e-05   2.84e-05
+                Insect         54         77          0          0   0.000612    0.00042
+          Invertebrate         22         52          0          0    0.00103    0.00075
+                  Ipod         23         36          1          0          0          0
+                Isopod         15         29          1          0          0          0
+                Jacket        309        699     0.0232    0.00143      0.019    0.00855
+               Jacuzzi         18         18          0          0   0.000742   0.000596
+       Jaguar (Animal)         25         31          0          0     0.0352     0.0263
+                 Jeans        672       1530      0.192       0.35      0.158     0.0749
+             Jellyfish         18         58          1          0   0.000409   0.000276
+               Jet ski         21         24          0          0    0.00703    0.00476
+                   Jug         21         27          0          0          0          0
+                 Juice         23         36          0          0          0          0
+              Kangaroo         22         36          1          0          0          0
+                Kettle         25         33          1          0    0.00834    0.00719
+Kitchen & dining room table         23         23          1          0          0          0
+     Kitchen appliance         22        110          0          0   0.000333   0.000231
+         Kitchen knife         24         29      0.246     0.0576     0.0964     0.0738
+       Kitchen utensil         23         37          1          0          0          0
+                  Kite         29        124      0.655      0.367      0.468       0.24
+                 Knife         29         46      0.259       0.37      0.236      0.181
+                 Koala         12         13          0          0    0.00122   0.000889
+                Ladder         21         26          1          0          0          0
+                 Ladle          2          8          1          0          0          0
+               Ladybug         22         26          0          0   0.000323   0.000224
+                  Lamp         36         70          0          0          0          0
+          Land vehicle        238        463     0.0171    0.00216    0.00962    0.00418
+               Lantern         19         68          0          0          0          0
+                Laptop         68        117      0.367      0.684      0.571      0.387
+      Lavender (Plant)         18        157          1          0   9.42e-06   5.65e-06
+                 Lemon         25         65          1          0     0.0636     0.0555
+               Leopard         29         35          1          0          0          0
+            Light bulb         23         41          1          0    0.00022   8.44e-05
+          Light switch         11         13          1          0          0          0
+            Lighthouse         20         21          0          0          0          0
+                  Lily         25         59          0          0          0          0
+             Limousine         11         14          1          0    0.00806    0.00629
+                  Lion         33         40          0          0   0.000612   0.000377
+              Lipstick         26         29          0          0   0.000406   0.000164
+                Lizard         19         36          1          0          0          0
+               Lobster         26         41          1          0          0          0
+              Loveseat         16         18          1          0   0.000618   0.000433
+      Luggage and bags         27         49          1          0          0          0
+                  Lynx         20         20          0          0     0.0132    0.00948
+                Magpie         22         28          1          0          0          0
+                Mammal       2929      12505      0.247      0.419      0.202       0.12
+                   Man       5553      17126      0.327      0.707      0.451       0.28
+                 Mango         17         40          0          0   4.35e-05   4.35e-05
+                 Maple         31        158          0          0   3.11e-06    2.8e-06
+               Maracas          1          2          0          0   0.000151   3.01e-05
+  Marine invertebrates         26        223          1          0   0.000579   0.000349
+         Marine mammal         37         61          1          0          0          0
+         Measuring cup          8          9          1          0          0          0
+        Mechanical fan         16         17          0          0          0          0
+     Medical equipment         17         63          1          0   0.000188   8.62e-05
+            Microphone        210        286          0          0    0.00561     0.0019
+        Microwave oven         24         26          1          0          0          0
+                  Milk         22         27          0          0   0.000287   9.77e-05
+             Miniskirt         26         27          0          0          0          0
+                Mirror         28         31          1          0          0          0
+               Missile         32         43          1          0          0          0
+                 Mixer         24         31          1          0    0.00278    0.00183
+           Mixing bowl         25         35          0          0          0          0
+          Mobile phone         30         52          0          0     0.0131     0.0103
+                Monkey         25         36          0          0   0.000639   0.000214
+ Moths and butterflies         30         40          1          0   0.000587   0.000455
+            Motorcycle         57        116      0.292      0.526      0.357      0.218
+                 Mouse         28         34          0          0    0.00259    0.00184
+                Muffin         20         83     0.0424     0.0241     0.0379     0.0259
+                   Mug         32         47          0          0   0.000319   0.000157
+                  Mule         13         21          1          0          0          0
+              Mushroom         24         40          0          0   0.000171   6.78e-05
+    Musical instrument         33         65          1          0          0          0
+      Musical keyboard         35         41          0          0    0.00017   5.32e-05
+   Nail (Construction)         14         50          1          0   0.000109   1.09e-05
+              Necklace         25         29          1          0          0          0
+            Nightstand         31         45          0          0      0.014    0.00829
+                  Oboe         16         27          0          0   0.000277   0.000164
+       Office building         77         77          0          0     0.0158     0.0117
+       Office supplies         23        147          0          0   0.000515   0.000247
+                Orange         24        189      0.277      0.101      0.094     0.0691
+Organ (Musical Instrument)         14         14          1          0   0.000358   0.000123
+               Ostrich         31         39          1          0   7.58e-05   3.89e-05
+                 Otter         27         38          0          0    0.00241    0.00172
+                  Oven         23         32      0.209       0.25      0.202     0.0927
+                   Owl         27         42          0          0   0.000474    0.00024
+                Oyster         24         58          0          0    1.5e-05   1.35e-05
+                Paddle         34         74          0          0          0          0
+             Palm tree         33        118          1          0          0          0
+               Pancake         27         81          0          0      0.003    0.00182
+                 Panda         23         25          0          0    0.00181    0.00162
+           Paper towel         23         41          1          0          0          0
+             Parachute         25         43          1          0          0          0
+         Parking meter         15         16      0.208      0.688      0.289      0.188
+                Parrot         25         40          0          0   0.000639   0.000613
+                 Pasta         25         25          1          0    0.00169    0.00133
+                Pastry         32         77          1          0    0.00792    0.00354
+                 Peach         22         59          0          0   0.000391   0.000297
+                  Pear         18         85          1          0    0.00408     0.0033
+                   Pen         22         29          0          0   0.000857   0.000732
+           Pencil case         22         31          1          0          0          0
+      Pencil sharpener          3         11          1          0          0          0
+               Penguin         29         64          0          0          0          0
+               Perfume         24         40          1          0    0.00373    0.00265
+                Person       1848       4821      0.186      0.342       0.15     0.0848
+         Personal care         20         72          0          0     0.0522     0.0334
+Personal flotation device         25         50          0          0          0          0
+                 Piano         31         34          1          0          0          0
+         Picnic basket         26         38          1          0          0          0
+         Picture frame         44        109          1          0   8.99e-06   7.19e-06
+                   Pig         21         51     0.0344     0.0392     0.0142     0.0105
+                Pillow         21         63          1          0          0          0
+             Pineapple         21         70          1          0   4.08e-05   2.03e-05
+   Pitcher (Container)         24         26          1          0    0.00466    0.00166
+                 Pizza         22         34       0.47      0.471      0.362      0.273
+          Pizza cutter          7          7          1          0          0          0
+                 Plant        446       1341      0.296    0.00149    0.00489     0.0028
+           Plastic bag         24         45          1          0          0          0
+                 Plate         47        125          0          0    0.00101   0.000505
+               Platter         49        108     0.0123     0.0185    0.00619    0.00463
+      Plumbing fixture         23         58          1          0          0          0
+            Polar bear         24         35          0          0          0          0
+           Pomegranate         26        107          1          0   3.83e-05   2.32e-05
+               Popcorn         18         23     0.0956      0.261      0.159       0.15
+                 Porch         25         30          0          0          0          0
+             Porcupine         21         23          1          0      0.051     0.0286
+                Poster        137        221          0          0    0.00345     0.0019
+                Potato         18         23          0          0     0.0018    0.00128
+Power plugs and sockets         21         46          0          0    0.00596    0.00455
+       Pressure cooker          4          5          1          0          0          0
+               Pretzel         22         43          1          0    0.00339    0.00307
+               Printer         30         35          1          0     0.0011    0.00101
+               Pumpkin         24         63          0          0    0.00308    0.00178
+          Punching bag         21         55          0          0          0          0
+                Rabbit         23         34          1          0    0.00124   0.000813
+               Raccoon         24         26          1          0   0.000612   0.000547
+                Racket         24         27          1          0          0          0
+                Radish         13         82          1          0          0          0
+      Ratchet (Device)          9         53          1          0   0.000906   0.000496
+                 Raven         21         27          1          0      0.011    0.00613
+       Rays and skates         20         36          1          0   0.000309   0.000247
+             Red panda         26         29          0          0   0.000333   0.000167
+          Refrigerator         30         32      0.368      0.688      0.491      0.336
+        Remote control         21         26          1          0      0.144      0.135
+               Reptile         27         37          1          0          0          0
+            Rhinoceros         31         47      0.321     0.0137      0.224      0.183
+                 Rifle         26         34          0          0   0.000199   9.86e-05
+           Ring binder          3          3          1          0          0          0
+                Rocket         34         52          1          0          0          0
+         Roller skates         26        141          0          0    0.00662    0.00427
+                  Rose         14         32          1          0          0          0
+            Rugby ball         32         36          1          0          0          0
+                 Ruler         20         23     0.0278     0.0435    0.00717      0.006
+                 Salad         54         70     0.0203     0.0143     0.0107    0.00591
+Salt and pepper shakers         16         31          1          0     0.0117     0.0105
+                Sandal         22         49          1          0          0          0
+              Sandwich         28         43      0.249      0.093      0.142      0.124
+                Saucer         40         79          1          0          0          0
+             Saxophone         23         29          1          0          0          0
+                 Scale         17         17          0          0   0.000267   4.37e-05
+                 Scarf         43         52          1          0          0          0
+              Scissors         23         43      0.243      0.512      0.366        0.3
+            Scoreboard         28         32          1          0          0          0
+              Scorpion         14         18          1          0   0.000145    0.00013
+           Screwdriver          8         10          1          0          0          0
+             Sculpture        135        250     0.0288      0.036     0.0131     0.0077
+              Sea lion         22         33          1          0   0.000154   0.000123
+            Sea turtle         23         41          1          0          0          0
+               Seafood         17         35          0          0   0.000285   0.000164
+              Seahorse         19         26          1          0    0.00416    0.00289
+             Seat belt         20         26          1          0          0          0
+                Segway         25         55          1          0     0.0114    0.00495
+          Serving tray         15         15          1          0          0          0
+        Sewing machine         23         33          1          0          0          0
+                 Shark         23         30          0          0   0.000131      5e-05
+                 Sheep         28         71      0.632      0.282      0.408      0.264
+                 Shelf        126        424      0.248     0.0825     0.0589     0.0251
+             Shellfish         24         90          0          0   3.84e-05   2.17e-05
+                 Shirt         93        129          0          0   0.000197   4.86e-05
+                Shorts        165        413          1          0          0          0
+               Shotgun         25         26          0          0          0          0
+                Shower         20         23          1          0          0          0
+                Shrimp         25         67          0          0    0.00316    0.00161
+                  Sink         77         82      0.408      0.471      0.309      0.111
+            Skateboard         29         39      0.746      0.256      0.363      0.188
+                   Ski         35         86          1          0          0          0
+                 Skirt         20         23          0          0          0          0
+                 Skull         29         44          1          0          0          0
+                 Skunk          2          4          0          0          0          0
+            Skyscraper         20         62          0          0          0          0
+           Slow cooker         18         21          1          0   2.62e-05   2.62e-06
+                 Snack        144        454     0.0821       0.11     0.0363     0.0242
+                 Snail         20         27          1          0          0          0
+                 Snake         24         24          1          0          0          0
+             Snowboard         27         51      0.646      0.275      0.389      0.182
+               Snowman         18         33          1          0   0.000282   0.000211
+            Snowmobile         24         40          0          0    0.00571     0.0038
+              Snowplow         22         34          0          0     0.0132    0.00779
+        Soap dispenser          6          7          1          0          0          0
+                  Sock         20         45          1          0          0          0
+              Sofa bed         25         34      0.383      0.147      0.133      0.123
+              Sombrero         24         33          0          0          0          0
+               Sparrow         17         28          0          0     0.0136     0.0076
+               Spatula          6         18          1          0    0.00579    0.00553
+            Spice rack          6         11          0          0     0.0399      0.031
+                Spider         31         32          0          0     0.0059    0.00369
+                 Spoon         20         26      0.202      0.231      0.197      0.169
+      Sports equipment         53        156          1          0          0          0
+        Sports uniform        101        275          1          0    0.00165   0.000808
+        Squash (Plant)         17         23          1          0          0          0
+                 Squid         22         46          0          0    0.00202    0.00142
+              Squirrel         21         22          1          0          0          0
+                Stairs         33         38          1          0          0          0
+               Stapler         12         19          1          0   0.000223   0.000223
+              Starfish         17         22          1          0    0.00372    0.00325
+    Stationary bicycle         19         49          1          0   4.84e-05   3.38e-05
+           Stethoscope         17         17          1          0          0          0
+                 Stool         26         40          0          0          0          0
+             Stop sign         25         26      0.405      0.846      0.846      0.736
+            Strawberry         25        113     0.0441     0.0354    0.00653    0.00366
+          Street light         30        107          1          0          0          0
+             Stretcher         21         26          1          0          0          0
+          Studio couch         30         55          1          0      0.155       0.13
+             Submarine         15         16          1          0          0          0
+    Submarine sandwich         16         16          0          0   6.16e-05   4.92e-05
+                  Suit        524        981      0.315      0.331      0.269      0.152
+              Suitcase         24         38      0.381      0.447      0.294      0.221
+               Sun hat        126        203          1          0     0.0382     0.0155
+            Sunglasses        488        775          0          0    0.00674    0.00249
+             Surfboard         20         28      0.485      0.179      0.235      0.134
+                 Sushi         28         86          0          0    0.00107    0.00054
+                  Swan         24        140          1          0          0          0
+              Swim cap         24         64          1          0          0          0
+         Swimming pool         46         50          0          0   1.47e-05   1.03e-05
+              Swimwear         55        167          0          0          0          0
+                 Sword         28         41          1          0   0.000124   9.93e-05
+               Syringe         10         18          1          0          0          0
+                 Table        766       1247      0.263      0.499      0.269      0.135
+   Table tennis racket         24         38          1          0          0          0
+       Tablet computer         25         37          0          0     0.0055    0.00484
+             Tableware        129        813      0.119      0.133     0.0429     0.0235
+                  Taco         30         52          1          0     0.0197     0.0158
+                  Tank         19         28          1          0   0.000411   0.000375
+                   Tap         47         66          1          0          0          0
+                  Tart         17        104          1          0          0          0
+                  Taxi         25         63          1          0          0          0
+                   Tea         26         32          1          0          0          0
+                Teapot         20         25          1          0   0.000618   0.000234
+            Teddy bear         29         33      0.737      0.152      0.285      0.224
+             Telephone         22         25          0          0   0.000106   3.67e-05
+            Television         42         48          1          0          0          0
+           Tennis ball         26         29          1          0          0          0
+         Tennis racket         25         26      0.666      0.462      0.534      0.351
+                  Tent         19         27          1          0          0          0
+                 Tiara         26         42          1          0          0          0
+                  Tick         17         19          1          0          0          0
+                   Tie        125        147      0.412      0.626      0.491      0.338
+                 Tiger         22         28          1          0          0          0
+               Tin can         17         21          0          0          0          0
+                  Tire        386       1573      0.339      0.202      0.154      0.083
+               Toaster          6          8      0.914      0.125      0.135      0.129
+                Toilet         37         40      0.396       0.65      0.507      0.255
+          Toilet paper         27         45          1          0          0          0
+                Tomato         23        113     0.0416     0.0265     0.0175     0.0136
+                  Tool         23         45          1          0   0.000658   0.000329
+            Toothbrush         12         18      0.332      0.111      0.084     0.0515
+                 Torch          2          2          1          0          0          0
+              Tortoise         22         39          1          0          0          0
+                 Towel         24         48          1          0   8.59e-05   7.73e-05
+                 Tower         31         70          0          0   8.03e-05   4.23e-05
+                   Toy        146        382      0.295    0.00262     0.0139    0.00947
+         Traffic light         24        107      0.489     0.0841      0.132     0.0678
+          Traffic sign         15         53          1          0          0          0
+                 Train         19         22      0.317      0.318      0.367      0.223
+        Training bench         15         29          1          0          0          0
+             Treadmill          8         17          0          0   0.000288   0.000123
+                  Tree       1194       3231      0.193      0.231      0.107     0.0448
+            Tree house         16         17          1          0          0          0
+                Tripod         18         20          0          0          0          0
+              Trombone         19         31          1          0          0          0
+              Trousers         88        174          0          0    0.00026   0.000129
+                 Truck         28         39      0.204       0.41      0.308      0.189
+               Trumpet         25         44          0          0   9.51e-05    5.7e-05
+                Turkey         20         37          1          0     0.0036     0.0026
+                Turtle         15         26          1          0   0.000297   0.000178
+              Umbrella         26         52      0.378      0.346      0.285      0.154
+              Unicycle         18         24          0          0    5.7e-05   1.14e-05
+                   Van         26         43          1          0          0          0
+                  Vase         20         23      0.123      0.174      0.137      0.116
+             Vegetable         43        145          1          0   9.25e-05   4.63e-05
+               Vehicle         99        195          1          0   5.77e-06   5.19e-06
+Vehicle registration plate         32         49          1          0          0          0
+                Violin         24         46          1          0          0          0
+     Volleyball (Ball)         17         17          1          0    0.00435    0.00265
+                Waffle         22         51          1          0          0          0
+           Waffle iron          4          5          1          0          0          0
+            Wall clock         23         29          0          0    0.00203    0.00154
+              Wardrobe         27         30          1          0          0          0
+       Washing machine         24         57          0          0    0.00229    0.00175
+       Waste container         22         35          1          0   0.000463   0.000324
+                 Watch         25         34          1          0          0          0
+            Watercraft         22         43          1          0          0          0
+            Watermelon         22         61          0          0   0.000485   0.000448
+                Weapon         19         28          1          0          0          0
+                 Whale         25         39          1          0          0          0
+                 Wheel        745       3264      0.372      0.371      0.261      0.131
+            Wheelchair         17         22          1          0          0          0
+                 Whisk         20         26          0          0     0.0028    0.00203
+            Whiteboard         17         23          0          0    0.00165   0.000971
+                Willow          7         12          1          0          0          0
+                Window        301       1344      0.132      0.138     0.0444     0.0183
+          Window blind         22         31          0          0          0          0
+                  Wine         71        191     0.0378     0.0262      0.016    0.00643
+            Wine glass         99        288      0.326      0.604      0.365      0.226
+             Wine rack         21         49          0          0   0.000661   0.000314
+          Winter melon          4          4          0          0   0.000446    0.00037
+                   Wok         16         22          1          0      0.005    0.00192
+                 Woman       4782      12164      0.334       0.62      0.424       0.26
+    Wood-burning stove         29         30          1          0          0          0
+            Woodpecker         16         16          0          0     0.0305     0.0259
+                  Worm         24         28          0          0   0.000843   0.000602
+                Wrench          8         26          1          0   4.44e-05   3.11e-05
+                 Zebra         31         48      0.734       0.75      0.793       0.67
+              Zucchini         22        123          0          0          0          0
+Speed: 0.3ms preprocess, 11.5ms inference, 0.0ms loss, 8.4ms postprocess per image
+Results saved to C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch
+
+======================================================================
+TRAINING SESSION COMPLETE!
+======================================================================
+Run outputs saved to: C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch
+Best Model Weights: C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\weights\best.pt (5.51 MB)    
+Final Model Weights: C:\Users\HP\Desktop\CV Project\runs\detect\runs\detect\epoch_by_epoch\weights\last.pt (5.51 MB)   
+PS C:\Users\HP\Desktop\CV Project>
