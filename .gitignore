@@ -10,11 +10,10 @@ data/yolo_dataset/labels/
 data/annotations/
 *.cache
 
-# Model checkpoints and weights (binary models over 5 MB / 100 MB limit)
-*.pt
+# Intermediate heavy checkpoints (>25 MB) and other model formats
+epoch*.pt
 *.onnx
 *.engine
-weights/
 
 # Python cache & artifacts
 __pycache__/
