@@ -186,4 +186,51 @@ For the fourth consecutive epoch, all three loss measures decreased. Classificat
 - Detailed report: `Epoch Reports/Epoch_4_Training_Report.docx`
 - LinkedIn graphic and copy: `Epoch Posts/Epoch_4_Training_Results.png` and `Epoch Posts/Epoch_4_LinkedIn_Post.md`
 
+## Epoch 5 (50% Milestone)
+
+**Status:** Completed successfully  
+**Date:** November 6-7 2026  
+**Run folder:** `runs/detect/runs/detect/epoch_5`
+
+### Command used
+
+```powershell
+.venv_cuda\Scripts\python.exe scripts\train_detector.py --model runs\detect\runs\detect\epoch_4\weights\last.pt --epochs 1 --batch 8 --imgsz 640 --name epoch_5
+```
+
+### Execution record
+
+| Item | Result |
+|---|---:|
+| Training batches | 10,625 |
+| Training images | 85,000 |
+| Validation images | 15,000 |
+| Validation objects | 286,954 |
+| Total duration | 1.545 hours (about 1 hour 33 minutes) |
+| Cumulative 5-epoch runtime | 7.743 hours (~7 hours 45 minutes) |
+| Final weights size | 5.51 MB (`best.pt` & `last.pt`) |
+
+### Results and losses compared with previous epochs
+
+| Measure | Epoch 1 | Epoch 2 | Epoch 3 | Epoch 4 | Epoch 5 | Change vs Epoch 4 | Total Change vs Epoch 1 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Precision | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | -3.03 percentage points | -15.64 percentage points |
+| Recall | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | +1.66 percentage points (+12.6%) | +8.42 percentage points (+131.2%) |
+| mAP at 50 | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | +0.88 percentage points (+9.2%) | +5.24 percentage points (+99.8% Doubled!) |
+| mAP at 50 to 95 | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | +0.56 percentage points (+8.9%) | +3.49 percentage points (+103.6% Doubled!) |
+| Box loss | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | -0.0164 (improved) | -0.1366 |
+| Classification loss | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | -0.0780 (improved) | -1.1882 |
+| DFL loss | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | -0.0136 (improved) | -0.1187 |
+
+Epoch 5 brings the project to its official halfway mark (50% of the 10 planned epochs) with a double-digit breakthrough: mAP@50 reached 10.49%, effectively doubling from the start of training (+99.8% gain). mAP@50-95 likewise doubled (3.37% to 6.86%), and recall reached 14.84% (+131% gain). For the fifth consecutive epoch, all three loss metrics decreased. Precision settled at 38.14%, indicating the expected plateauing of the initial discovery phase before boundary refinement begins in Epochs 6-10.
+
+### Checkpoints and artifacts
+
+- Best checkpoint: `runs/detect/runs/detect/epoch_5/weights/best.pt`
+- Resume checkpoint: `runs/detect/runs/detect/epoch_5/weights/last.pt`
+- Raw terminal log: `Training Logs/Epoch_5_Training_Log.txt`
+- Detailed report: `Epoch Reports/Epoch_5_Training_Report.docx`
+- LinkedIn graphic and copy: `Epoch Posts/Epoch_5_Training_Results.png` and `Epoch Posts/Epoch_5_LinkedIn_Post.md`
+
+
 
