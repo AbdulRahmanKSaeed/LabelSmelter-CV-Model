@@ -4,24 +4,24 @@ A deep learning project fine-tuning **YOLO11 Nano (`yolo11n`)** for 601-class ob
 
 ---
 
-## 📊 Current Training Status (Epoch 6 / 10)
+## 📊 Current Training Status (Epoch 7 / 10 - 70% Complete)
 
-- **Completed Epochs:** 6 of 10 (Second half underway)
+- **Completed Epochs:** 7 of 10 (Home stretch: 3 epochs remaining)
 - **Total Images Processed per Epoch:** 85,000 training images + 15,000 validation images (100,000 images)
 - **Bounding Boxes Evaluated:** 286,954 instances across 601 categories
-- **Cumulative Training Time:** ~9 hours 17 minutes (average ~1.55 hours per epoch)
+- **Cumulative Training Time:** ~10 hours 51 minutes (average ~1.55 hours per epoch)
 
 ### 📈 Metrics Progression
 
-| Metric | Epoch 1 | Epoch 2 | Epoch 3 | Epoch 4 | Epoch 5 | Epoch 6 | Trend |
-|---|---:|---:|---:|---:|---:|---:|:---:|
-| **mAP@50 (50% IoU)** | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | **11.22%** | 🚀 **+113.7% Gain** |
-| **Recall (objects found)** | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | **15.62%** | 🚀 **+143.3% Gain** |
-| **mAP@50–95 (strict average)** | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | **7.29%** | 🚀 **+116.3% Gain** |
-| **Precision** | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | **36.43%** | ⚖️ Stabilizing (-1.7 pts) |
-| **Box Loss** | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | **1.4267** | 📉 Improved |
-| **Classification Loss** | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | **2.0591** | 📉 Down ~1.25 pts total |
-| **DFL Loss** | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | **1.4564** | 📉 Improved |
+| Metric | Epoch 1 | Epoch 2 | Epoch 3 | Epoch 4 | Epoch 5 | Epoch 6 | Epoch 7 | Trend |
+|---|---:|---:|---:|---:|---:|---:|---:|:---:|
+| **mAP@50 (50% IoU)** | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | 11.22% | **11.82%** | 🚀 **+125.1% Gain** |
+| **Recall (objects found)** | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | 15.62% | **16.37%** | 🚀 **+155.0% Gain** |
+| **mAP@50–95 (strict average)** | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | 7.29% | **7.64%** | 🚀 **+126.7% Gain** |
+| **Precision** | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | 36.43% | **35.00%** | ⚖️ Plateaued (-1.4 pts) |
+| **Box Loss** | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | 1.4267 | **1.4144** | 📉 Improved |
+| **Classification Loss** | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | 2.0591 | **2.0087** | 📉 Touching 2.0 (-1.30 pts) |
+| **DFL Loss** | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | 1.4564 | **1.4469** | 📉 Improved |
 
 ---
 
@@ -50,14 +50,16 @@ A deep learning project fine-tuning **YOLO11 Nano (`yolo11n`)** for 601-class ob
 │   ├── Epoch_3_Training_Report.docx
 │   ├── Epoch_4_Training_Report.docx
 │   ├── Epoch_5_Training_Report.docx
-│   └── Epoch_6_Training_Report.docx
+│   ├── Epoch_6_Training_Report.docx
+│   └── Epoch_7_Training_Report.docx
 ├── Epoch Posts/                         # Visual graphics & LinkedIn posts for each epoch
 │   ├── Epoch_1_Training_Results.png
 │   ├── Epoch_2_Training_Results.png
 │   ├── Epoch_3_Training_Results.png
 │   ├── Epoch_4_Training_Results.png
 │   ├── Epoch_5_Training_Results.png
-│   └── Epoch_6_Training_Results.png
+│   ├── Epoch_6_Training_Results.png
+│   └── Epoch_7_Training_Results.png
 ├── Project Documentation/
 │   └── PROJECT_JOURNAL.md               # Cumulative experiment log and technical journal
 ├── Training Logs/                       # Full raw terminal output per epoch
@@ -66,7 +68,8 @@ A deep learning project fine-tuning **YOLO11 Nano (`yolo11n`)** for 601-class ob
 │   ├── Epoch_3_Training_Log.txt
 │   ├── Epoch_4_Training_Log.txt
 │   ├── Epoch_5_Training_Log.txt
-│   └── Epoch_6_Training_Log.txt
+│   ├── Epoch_6_Training_Log.txt
+│   └── Epoch_7_Training_Log.txt
 ├── scripts/
 │   ├── train_detector.py                # Main YOLO training pipeline script
 │   └── evaluate_model.py                # Model evaluation utilities
@@ -81,11 +84,11 @@ To train the next epoch continuing from the latest saved model weights:
 
 ```powershell
 .venv_cuda\Scripts\python.exe scripts\train_detector.py `
-  --model "runs\detect\runs\detect\epoch_6\weights\last.pt" `
+  --model "runs\detect\runs\detect\epoch_7\weights\last.pt" `
   --epochs 1 `
   --batch 8 `
   --imgsz 640 `
-  --name epoch_7 2>&1 | Tee-Object -FilePath "Training Logs\Epoch_7_Training_Log.txt"
+  --name epoch_8 2>&1 | Tee-Object -FilePath "Training Logs\Epoch_8_Training_Log.txt"
 ```
 
 ---
