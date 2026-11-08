@@ -232,5 +232,52 @@ Epoch 5 brings the project to its official halfway mark (50% of the 10 planned e
 - Detailed report: `Epoch Reports/Epoch_5_Training_Report.docx`
 - LinkedIn graphic and copy: `Epoch Posts/Epoch_5_Training_Results.png` and `Epoch Posts/Epoch_5_LinkedIn_Post.md`
 
+## Epoch 6
+
+**Status:** Completed successfully  
+**Date:** November 8 2026  
+**Run folder:** `runs/detect/runs/detect/epoch_6`
+
+### Command used
+
+```powershell
+.venv_cuda\Scripts\python.exe scripts\train_detector.py --model runs\detect\runs\detect\epoch_5\weights\last.pt --epochs 1 --batch 8 --imgsz 640 --name epoch_6
+```
+
+### Execution record
+
+| Item | Result |
+|---|---:|
+| Training batches | 10,625 |
+| Training images | 85,000 |
+| Validation images | 15,000 |
+| Validation objects | 286,954 |
+| Total duration | 1.535 hours (about 1 hour 32 minutes) |
+| Cumulative 6-epoch runtime | 9.278 hours (~9 hours 17 minutes) |
+| Final weights size | 5.51 MB (`best.pt` & `last.pt`) |
+
+### Results and losses compared with previous epochs
+
+| Measure | Epoch 1 | Epoch 2 | Epoch 3 | Epoch 4 | Epoch 5 | Epoch 6 | Change vs Epoch 5 | Total Change vs Epoch 1 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Precision | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | 36.43% | -1.71 percentage points | -17.35 percentage points |
+| Recall | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | 15.62% | +0.78 percentage points (+5.3%) | +9.20 percentage points (+143.3%) |
+| mAP at 50 | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | 11.22% | +0.73 percentage points (+7.0%) | +5.97 percentage points (+113.7%) |
+| mAP at 50 to 95 | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | 7.29% | +0.43 percentage points (+6.3%) | +3.92 percentage points (+116.3%) |
+| Box loss | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | 1.4267 | -0.0139 (improved) | -0.1505 |
+| Classification loss | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | 2.0591 | -0.0610 (improved) | -1.2492 |
+| DFL loss | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | 1.4564 | -0.0108 (improved) | -0.1295 |
+
+Epoch 6 initiates the second half of training with steady convergence. mAP@50 reached 11.22% (+113.7% gain since Epoch 1) and recall climbed to 15.62% (+143.3% gain). All three loss metrics decreased for the sixth consecutive epoch, with classification loss approaching the sub-2.0 boundary (2.0591). Notably, precision decline has flattened (-1.71 pts vs -3.03 pts in Ep 5 and -4.82 pts in Ep 4), marking the transition into boundary stabilization.
+
+### Checkpoints and artifacts
+
+- Best checkpoint: `runs/detect/runs/detect/epoch_6/weights/best.pt`
+- Resume checkpoint: `runs/detect/runs/detect/epoch_6/weights/last.pt`
+- Raw terminal log: `Training Logs/Epoch_6_Training_Log.txt`
+- Detailed report: `Epoch Reports/Epoch_6_Training_Report.docx`
+- LinkedIn graphic and copy: `Epoch Posts/Epoch_6_Training_Results.png` and `Epoch Posts/Epoch_6_LinkedIn_Post.md`
+
+
 
 
