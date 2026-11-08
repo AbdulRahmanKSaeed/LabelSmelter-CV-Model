@@ -324,6 +324,53 @@ Epoch 7 brings the project to 70% completion with unbroken progress. mAP@50 reac
 - Detailed report: `Epoch Reports/Epoch_7_Training_Report.docx`
 - LinkedIn graphic and copy: `Epoch Posts/Epoch_7_Training_Results.png` and `Epoch Posts/Epoch_7_LinkedIn_Post.md`
 
+## Epoch 8 (80% Milestone - Sub-2.0 Loss Breakthrough)
+
+**Status:** Completed successfully  
+**Date:** November 8 2026  
+**Run folder:** `runs/detect/runs/detect/epoch_8`
+
+### Command used
+
+```powershell
+.venv_cuda\Scripts\python.exe scripts\train_detector.py --model runs\detect\runs\detect\epoch_7\weights\last.pt --epochs 1 --batch 8 --imgsz 640 --name epoch_8
+```
+
+### Execution record
+
+| Item | Result |
+|---|---:|
+| Training batches | 10,625 |
+| Training images | 85,000 |
+| Validation images | 15,000 |
+| Validation objects | 286,954 |
+| Total duration | 1.539 hours (about 1 hour 32 minutes) |
+| Cumulative 8-epoch runtime | 12.381 hours (~12 hours 23 minutes) |
+| Final weights size | 5.51 MB (`best.pt` & `last.pt`) |
+
+### Results and losses compared with previous epochs
+
+| Measure | Epoch 1 | Epoch 2 | Epoch 3 | Epoch 4 | Epoch 5 | Epoch 6 | Epoch 7 | Epoch 8 | Change vs Epoch 7 | Total Change vs Epoch 1 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Precision | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | 36.43% | 35.00% | 34.28% | -0.72 percentage points | -19.50 percentage points |
+| Recall | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | 15.62% | 16.37% | 17.31% | +0.94 percentage points (+5.7%) | +10.89 percentage points (+169.6%) |
+| mAP at 50 | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | 11.22% | 11.82% | 12.35% | +0.53 percentage points (+4.5%) | +7.10 percentage points (+135.2%) |
+| mAP at 50 to 95 | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | 7.29% | 7.64% | 7.99% | +0.35 percentage points (+4.6%) | +4.62 percentage points (+137.1%) |
+| Box loss | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | 1.4267 | 1.4144 | 1.4035 | -0.0109 (improved) | -0.1737 |
+| Classification loss | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | 2.0591 | 2.0087 | 1.9660 | -0.0427 (improved) | -1.3423 (Sub-2.0 milestone!) |
+| DFL loss | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | 1.4564 | 1.4469 | 1.4385 | -0.0084 (improved) | -0.1474 |
+
+Epoch 8 brings the project to 80% completion with a key optimization breakthrough: classification loss officially dropped below the 2.00 barrier to 1.9660 (-1.34 pts total since baseline). mAP@50 reached 12.35% (+135.2% relative gain) and recall climbed to 17.31% (+169.6% gain, finding nearly 50,000 target objects). All three loss metrics decreased for the eighth consecutive epoch. Precision change flattened to just -0.72 percentage points, demonstrating complete stabilization as the project enters the final two epochs (Epochs 9 & 10).
+
+### Checkpoints and artifacts
+
+- Best checkpoint: `runs/detect/runs/detect/epoch_8/weights/best.pt`
+- Resume checkpoint: `runs/detect/runs/detect/epoch_8/weights/last.pt`
+- Raw terminal log: `Training Logs/Epoch_8_Training_Log.txt`
+- Detailed report: `Epoch Reports/Epoch_8_Training_Report.docx`
+- LinkedIn graphic and copy: `Epoch Posts/Epoch_8_Training_Results.png` and `Epoch Posts/Epoch_8_LinkedIn_Post.md`
+
+
 
 
 
