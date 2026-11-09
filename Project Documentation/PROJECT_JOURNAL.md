@@ -375,3 +375,46 @@ Epoch 8 brings the project to 80% completion with a key optimization breakthroug
 
 
 
+
+
+## Epoch 9 (90% Penultimate Milestone)
+
+**Status:** Completed successfully  
+**Date:** November 8-9 2026  
+**Run folder:** `runs/detect/runs/detect/epoch_9`
+
+### Command used
+```powershell
+.venv_cuda\Scripts\python.exe scripts\train_detector.py --model runs\detect\runs\detect\epoch_8\weights\last.pt --epochs 1 --batch 8 --imgsz 640 --name epoch_9
+```
+
+### Execution record
+| Item | Result |
+|---|---:|
+| Training batches | 10,625 |
+| Training images | 85,000 |
+| Validation images | 15,000 |
+| Validation objects | 286,954 |
+| Total duration | 1.534 hours (about 1 hour 32 minutes) |
+| Cumulative 9-epoch runtime | 13.915 hours (~13 hours 55 minutes) |
+| Final weights size | 5.51 MB (`best.pt` & `last.pt`) |
+
+### Results and losses
+| Measure | Ep1 | Ep2 | Ep3 | Ep4 | Ep5 | Ep6 | Ep7 | Ep8 | Ep9 | Change vs Ep8 | Total vs Ep1 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Precision | 53.78% | 51.17% | 45.99% | 41.17% | 38.14% | 36.43% | 35.00% | 34.28% | 30.82% | -3.46 pts | -22.96 pts |
+| Recall | 6.42% | 9.73% | 11.30% | 13.18% | 14.84% | 15.62% | 16.37% | 17.31% | 18.15% | +0.84 pts | +11.73 pts (+182.7%) |
+| mAP at 50 | 5.25% | 7.21% | 8.49% | 9.61% | 10.49% | 11.22% | 11.82% | 12.35% | 12.84% | +0.49 pts | +7.59 pts (+144.6%) |
+| mAP at 50 to 95 | 3.37% | 4.71% | 5.58% | 6.30% | 6.86% | 7.29% | 7.64% | 7.99% | 8.28% | +0.29 pts | +4.91 pts (+145.7%) |
+| Box loss | 1.5772 | 1.5002 | 1.4786 | 1.4570 | 1.4406 | 1.4267 | 1.4144 | 1.4035 | 1.3935 | -0.0100 | -0.1837 (sub-1.40 milestone!) |
+| Classification loss | 3.3083 | 2.4242 | 2.3067 | 2.1981 | 2.1201 | 2.0591 | 2.0087 | 1.9660 | 1.9282 | -0.0378 | -1.3801 |
+| DFL loss | 1.5859 | 1.5174 | 1.4981 | 1.4808 | 1.4672 | 1.4564 | 1.4469 | 1.4385 | 1.4310 | -0.0075 | -0.1549 |
+
+Epoch 9 brings the project to 90% completion with a new milestone: box loss broke below the 1.40 barrier to 1.3935. mAP@50 reached 12.84% (+144.6% relative gain since Epoch 1) and recall climbed to 18.15%, meaning the model now finds roughly 52,000 ground-truth objects per validation run. All three loss metrics decreased for the ninth consecutive epoch. The precision decline continues as expected during the discovery phase of training for a 601-class detection task.
+
+### Checkpoints and artifacts
+- Best checkpoint: `runs/detect/runs/detect/epoch_9/weights/best.pt`
+- Resume checkpoint: `runs/detect/runs/detect/epoch_9/weights/last.pt`
+- Raw terminal log: `Training Logs/Epoch_9_Training_Log.txt`
+- Detailed report: `Epoch Reports/Epoch_9_Training_Report.docx`
+- LinkedIn graphic and copy: `Epoch Posts/Epoch_9_Training_Results.png` and `Epoch Posts/Epoch_9_LinkedIn_Post.md`
