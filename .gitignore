@@ -25,3 +25,6 @@ __pycache__/
 .idea/
 Thumbs.db
 Desktop.ini
+
+# Local inference outputs
+runs/detect/predict*/
