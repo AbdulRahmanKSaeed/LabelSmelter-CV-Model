@@ -1,94 +1,91 @@
-# Phase 2 Plan: Cloud Scale-Up with High-Capacity YOLO11 on Google Colab
+# Phase 2 Plan: Optimized Local Training with YOLO11 Nano
 
 **Project:** Open Images V6 (601-Class) Object Detection  
 **Author:** Abdul Rahman K. Saeed  
 **Date:** November 2026  
-**Status:** In Preparation (Transitioning from Phase 1 Edge Baseline)  
+**Status:** Active — Round-Based Local Training  
 
 ---
 
 ## 1. Executive Summary & Why Phase 2
 
-In Phase 1, we successfully completed a 10-epoch fine-tuning curriculum using **YOLO11 Nano (`yolo11n`)** on local edge hardware (NVIDIA GeForce GTX 1050 with 3 GB VRAM). 
+In Phase 1, we completed a 10-epoch fine-tuning curriculum using **YOLO11 Nano (`yolo11n`)** on local edge hardware (NVIDIA GeForce GTX 1050 with 3 GB VRAM). The model achieved:
+- **Recall:** 19.05% (detecting 54,650+ objects across 601 classes)
+- **mAP@50:** 13.18% (+151% relative gain over Epoch 1)
+- **Classification Loss:** 1.8941 (sub-1.90 milestone)
+- **Unbroken convergence** across all 10 epochs
 
-### Key Lessons from Phase 1:
-- The end-to-end pipeline was 100% verified (data ingestion, label mapping, loss convergence from 3.30 down to 1.89, weights management).
-- However, **YOLO Nano (2.8M parameters)** across **601 classes** reached its physical capacity ceiling:
-  - Bounding boxes were loose on complex scenes.
-  - Distant and partially occluded objects (such as cars in street parking) received low confidence scores (0.01 – 0.09) due to feature downsampling and parameter dilution across 601 competing heads.
-  - 10 epochs is only the initial discovery phase for a 601-class problem.
-
-**Phase 2 Goal:** Scale up to **YOLO11 Medium (`yolo11m`)** or **Large (`yolo11l`)** using cloud GPUs (NVIDIA T4 with 16 GB VRAM or A100 with 40 GB VRAM) on Google Colab, targeting 30 to 50 epochs of training with high confidence, tight bounding boxes, and comprehensive object detection.
+**Phase 2 Goal:** Continue training the same YOLO11 Nano architecture locally with **advanced training optimizations** to push accuracy significantly higher without requiring more powerful hardware:
+- **FP16 Mixed Precision** — halves VRAM usage, enables more headroom
+- **Cosine Learning Rate Scheduler** — smoother convergence in later epochs
+- **Mosaic + Mixup + Copy-Paste Augmentation** — richer training signal per batch
+- **20 more epochs** (4 rounds × 5 epochs), targeting mAP@50 25–35%+
 
 ---
 
-## 2. Hardware & Model Comparison
+## 2. Training Configuration
 
-| Feature | Phase 1 (Local Edge Baseline) | Phase 2 (Google Colab Scale-Up) | Impact on Performance |
+| Feature | Phase 1 (Baseline) | Phase 2 (Optimized) | Benefit |
 |---|---|---|---|
-| **Hardware** | NVIDIA GTX 1050 (3 GB VRAM) | NVIDIA T4 / A100 (16 GB - 40 GB VRAM) | 5× to 13× more memory headroom |
-| **Model** | YOLO11 Nano (`yolo11n`) | **YOLO11 Medium (`yolo11m`)** | **7.5× more parameters (20.1M vs 2.8M)** |
-| **Batch Size** | 8 | **32 to 64** | Much more stable gradient updates |
-| **Input Resolution** | 640 × 640 | **800 × 800** | Small & distant objects remain crisp |
-| **Target Epochs** | 10 epochs (completed) | **30 to 50 epochs** | Deep convergence and high confidence |
-| **Confidence Output** | Low (0.05 – 0.20 on hard objects) | **High (0.60 – 0.90+)** | Crisp, tight detections without false negatives |
+| **Hardware** | GTX 1050 (3 GB VRAM) | GTX 1050 (3 GB VRAM) | Same edge hardware |
+| **Model** | YOLO11 Nano (2.6M params) | YOLO11 Nano (2.6M params) | Resume from Phase 1 best |
+| **Batch Size** | 8 | 8 | Fits in 3 GB with FP16 |
+| **Precision** | FP32 | **FP16 (half precision)** | ~40% VRAM savings |
+| **LR Scheduler** | Linear | **Cosine annealing** | Better late-stage convergence |
+| **Augmentation** | Default | **Mosaic 1.0 + Mixup 0.1 + Copy-paste 0.1** | Richer gradients per batch |
+| **Target Epochs** | 10 (done) | **+20 more (30 total)** | Deep convergence |
+| **Round Structure** | 1 epoch per run | **5 epochs per round** | Efficient batching |
+| **Checkpoint** | Every epoch | **Every 5 epochs** | Clean round boundaries |
 
 ---
 
-## 3. Project Directory Architecture for Phase 2
+## 3. Round Schedule
 
-To maintain clean separation between Phase 1 and Phase 2, all new documentation, reports, and graphics are housed under the dedicated `Phase 2/` directory:
+| Round | Epochs | Starting Checkpoint | Expected Duration |
+|---|---|---|---|
+| Round 1 | 11–15 | Phase 1 best.pt (epoch 10) | ~7.5 hours |
+| Round 2 | 16–20 | Round 1 last.pt | ~7.5 hours |
+| Round 3 | 21–25 | Round 2 last.pt | ~7.5 hours |
+| Round 4 | 26–30 | Round 3 last.pt | ~7.5 hours |
+
+---
+
+## 4. Directory Structure
 
 ```
 CV Project/
-├── Epoch Reports/                     # Phase 1 Technical Reports (Epochs 1-10)
-├── Epoch Posts/                       # Phase 1 LinkedIn Posts & PNGs (Epochs 1-10)
+├── Epoch Reports/                     # Phase 1 Reports (Epochs 1-10)
+├── Epoch Posts/                       # Phase 1 LinkedIn Posts (Epochs 1-10)
 ├── Project Documentation/             # Phase 1 Journal & Docs
 ├── Phase 2/
 │   ├── Documentation/
-│   │   ├── PHASE_2_PLAN.md            # Architecture & strategy blueprint (this file)
-│   │   └── PROJECT_JOURNAL_PHASE_2.md # Running log for Phase 2 cloud training
-│   ├── Reports/                       # Formal .docx technical reports for Phase 2
-│   ├── Posts/                         # 1200x1200 graphics & LinkedIn copy for Phase 2
-│   └── Colab/
-│       ├── Phase_2_YOLO11_Training.ipynb # Ready-to-run Google Colab Notebook
-│       ├── labels.zip                 # Pre-compressed 601-class annotations
-│       └── colab_train.py             # Headless cloud training script
+│   │   ├── PHASE_2_PLAN.md            # This file
+│   │   └── PROJECT_JOURNAL_PHASE_2.md # Running log for Phase 2
+│   ├── Reports/                       # DOCX reports per round
+│   └── Posts/                         # 1200x1200 PNGs & LinkedIn posts per round
+├── runs/detect/phase2/
+│   └── nano_optimized/                # Training outputs, weights, results.csv
+└── scripts/
+    ├── train_phase2_local.py          # Round-based training script
+    └── generate_phase2_round_artifacts.py  # Artifact generator
 ```
 
 ---
 
-## 4. Operational Execution Steps for Colab
+## 5. Execution
 
-### Step 1: Set Up Persistent Storage (Google Drive)
-All checkpoints (`best.pt`, `last.pt`) and evaluation outputs will be written directly to a designated Google Drive folder (`/content/drive/MyDrive/CV_Project_Phase2`), ensuring that even if a Colab session disconnects, no progress is ever lost.
-
-### Step 2: Dataset Loading in Colab
-Because Colab instances possess ultra-high-speed network connectivity (500–1000 Mbps):
-- Unzip the lightweight pre-generated labels archive (`labels.zip`, ~40 MB).
-- Stream or batch-download images via the multithreaded downloader script, or mount an image zip from Drive.
-
-### Step 3: Training Launch
-Launch training with YOLO11 Medium:
-```python
-from ultralytics import YOLO
-
-model = YOLO("yolo11m.pt")
-model.train(
-    data="dataset.yaml",
-    epochs=30,
-    batch=32,
-    imgsz=640,
-    device=0,
-    project="/content/drive/MyDrive/CV_Project_Phase2/runs",
-    name="yolo11m_601class",
-    save=True,
-    save_period=1
-)
+### Start a round:
+```powershell
+cd "C:\Users\HP\Desktop\CV Project"
+.venv_cuda\Scripts\python.exe scripts\train_phase2_local.py --round 1
 ```
 
-### Step 4: Tracking & Reporting
-For each completed milestone in Colab, sync metrics down to update:
-1. `Phase 2/Reports/` (.docx technical reports)
-2. `Phase 2/Posts/` (1200×1200 graphics and LinkedIn posts)
-3. `Phase 2/Documentation/PROJECT_JOURNAL_PHASE_2.md`
+### Generate artifacts after a round:
+```powershell
+.venv_cuda\Scripts\python.exe scripts\generate_phase2_round_artifacts.py --round 1 --start_epoch 11 --end_epoch 15 --results_csv "runs/detect/phase2/nano_optimized/results.csv"
+```
+
+### Resume if interrupted:
+```powershell
+.venv_cuda\Scripts\python.exe scripts\train_phase2_local.py --round 1 --resume
+```

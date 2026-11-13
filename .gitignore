@@ -28,3 +28,7 @@ Desktop.ini
 
 # Local inference outputs
 runs/detect/predict*/
+
+# Local test images
+images*.jfif
+images*.jpg
