@@ -153,3 +153,38 @@ Weights: `runs/detect/phase2/round_2_epochs_16_20/weights/`
 
 Artifacts saved to `Phase 2/Reports/` and `Phase 2/Posts/`.  
 Weights: `runs/detect/phase2/round_3_epochs_21_25/weights/`
+
+
+---
+
+## Phase 2 — Round 4 (Epochs 26–30) · November 16, 2026
+
+**Status:** Complete  
+**Hardware:** NVIDIA GTX 1050 (3 GB VRAM) — local training  
+**Technique:** FP16 · Cosine LR · Mosaic 1.0 · Mixup 0.1 · Copy-Paste 0.1  
+**Checkpoint in:** Round 3 last.pt  
+
+### Round 4 Final Metrics
+
+| Metric | Phase 1 Baseline (Ep 10) | Round 4 (Ep 30) | Change |
+|--------|--------------------------|--------------------------------|--------|
+| Recall | 19.05% | **23.94%** | +4.89 pts |
+| mAP@50 | 13.18% | **18.47%** | +5.29 pts |
+| mAP@50-95 | 8.52% | **12.16%** | +3.64 pts |
+| Precision | 29.24% | **35.13%** | +5.89 pts |
+| Box Loss | 1.3847 | **1.4266** | +0.0419 |
+| Class Loss | 1.8941 | **1.9070** | +0.0129 |
+| DFL Loss | 1.4244 | **1.4459** | +0.0215 |
+
+### Epoch Progression
+
+| Epoch | mAP@50 | Recall | Box Loss | Cls Loss |
+|-------|--------|--------|----------|----------|
+| 26 | 17.72% | 23.03% | 1.4791 | 2.1435 |
+| 27 | 17.65% | 23.17% | 1.4648 | 2.1181 |
+| 28 | 18.15% | 23.63% | 1.4632 | 2.1079 |
+| 29 | 18.31% | 23.85% | 1.4265 | 1.9217 |
+| 30 | 18.47% | 23.94% | 1.4266 | 1.9070 |
+
+Artifacts saved to `Phase 2/Reports/` and `Phase 2/Posts/`.  
+Weights: `runs/detect/phase2/round_4_epochs_26_30/weights/`
