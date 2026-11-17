@@ -33,3 +33,7 @@ runs/detect/predict*/
 images*.jfif
 images*.jpg
 1.jpg
+
+# Private Masterclass & Deep Dive Docs
+Project Documentation/The_Deep_End_YOLO11_Masterclass.*
+scripts/build_deep_dive_pdf.py
