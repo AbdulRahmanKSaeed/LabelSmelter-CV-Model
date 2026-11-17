@@ -32,3 +32,4 @@ runs/detect/predict*/
 # Local test images
 images*.jfif
 images*.jpg
+1.jpg
